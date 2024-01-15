@@ -8,10 +8,6 @@ job "demo-email" {
 
   group "email" {
 
-    service {
-      name = "demo-back"
-    }
-
     ephemeral_disk {
       size = 500 //TODO check accurate disc size
     }
