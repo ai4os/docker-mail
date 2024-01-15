@@ -11,4 +11,23 @@ This is the container that will be deployed as a side task (`mailtask`) in a [No
 
 ## Usage
 
-The entire logic of the process has been implemented 
+All the process logic has been implemented in the `mail.py` file. Specifically, this file sends an email notification if the Nomad Job has been scheduled after the specified deadline.
+
+For this purpose, the script reads a set of environment variables from the container, which must be specified in the Nomad Job.
+
+- **`PSWD`**: Support account password. We are currently working on handling this parameter safely.
+
+- **`NUM_DAYS`**: Number of days from which the notification will be sent by email (It has a default value of 7 days).
+
+- **`DATE`**: Date the nomad job was created.
+
+- **`DEST`**: Email address to notify the start of the Job execution.
+
+To facilitate testing, the container can be run locally with the following command, where the `test.env` file contains the container's environment variables:
+
+  ```bash
+  docker run --env-file test.env sftobias/mail-sender:latest
+  ```
+
+
+An example of the Nomad Job definition is found in the `email.nomad.hcl` file.
