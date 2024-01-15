@@ -13,6 +13,9 @@ This is the container that will be deployed as a side task (`mailtask`) in a [No
 
 All the process logic has been implemented in the `mail.py` file. Specifically, this file sends an email notification if the Nomad Job has been scheduled after the specified deadline.
 
+
+This means that if the Job is executed within the first 7 days (default) of its creation, no email will be sent. Otherwise, this task will notify the job author when its execution begins.
+
 For this purpose, the script reads a set of environment variables from the container, which must be specified in the Nomad Job.
 
 - **`PSWD`**: Support account password. We are currently working on handling this parameter safely.
