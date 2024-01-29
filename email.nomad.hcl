@@ -22,10 +22,11 @@ job "demo-email" {
       }
 
       env {
-        PSWD="XXXX XXXX XXXX XXXX" #Here will be the password for the support account.
         NUM_DAYS=7 #Number of days from which to notify
         DATE="2024-01-07T11:19:29.914177+01:00"
-        DEST="testcorreodocker@gmail.com"
+        DEST="sftobias@ifca.unican.es"
+        BODY="Body of the test mail"
+        SUBJECT="Test mail"
       }
 
       //TODO check accurate resources
