@@ -9,7 +9,7 @@ app = FastAPI()
 
 @app.get('/')
 async def root():
-    return {'message': 'Service is UP, use /notify'}
+    return {'message': 'server is UP'}
 
 @app.get("/notify")
 def notify(email: str, body: str, subject: str, token: str):
@@ -24,11 +24,12 @@ def notify(email: str, body: str, subject: str, token: str):
 
 def send_mail(email: str, body: str, subject: str):
   
-    # bash_command = f"echo '{body}' | mail -s '{subject}' {email}"
-
-    # try:
-    #     subprocess.run(bash_command, check=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    # except subprocess.CalledProcessError as e:
-    #     print(e.stderr)
-
     print(email, body, subject);
+
+    bash_command = f"echo '{body}' | mail -s '{subject}' {email}"
+
+    try:
+        subprocess.run(bash_command, check=True, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    except subprocess.CalledProcessError as e:
+        print(e.stderr)
+

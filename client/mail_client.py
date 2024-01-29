@@ -4,19 +4,12 @@ from dateutil import parser
 
 def send_mail(email: str, body: str, subject: str, token: str):
     
-    api_url = "http://127.0.0.1:8000/notify"
+    api_url = "http://192.168.1.3:8082/notify"
     params = {"email": email, "body": body, "subject": subject, "token": token}
 
-    try:
-    
-        response = requests.get(api_url, params)
-        response.raise_for_status()
-
-        data = response.json()
-        return data
-    
-    except requests.exceptions.RequestException as e:
-        return {"status": "error", "message": f"Error en la solicitud a la API: {str(e)}"}
+    response = requests.get(api_url, params)
+    data = response.json()
+    print(data)
 
 def get_current_date():
 
@@ -38,11 +31,12 @@ def compare_date(date):
 def main():
 
     date = parser.parse(os.getenv("DATE").strip('"'))
-    mail = parser.parse(os.getenv("DEST").strip('"'))
-    body = parser.parse(os.getenv("BODY").strip('"'))
-    subject = parser.parse(os.getenv("SUBJECT").strip('"'))
+    mail = os.getenv("DEST")
+    body = os.getenv("BODY").strip('"')
+    subject = os.getenv("SUBJECT").strip('"')
+    token = os.getenv("MAILING_TOKEN")
 
     if compare_date(date):
-        send_mail(mail, body, subject)
+        send_mail(mail, body, subject, token)
 
 main()
