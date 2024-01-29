@@ -3,6 +3,7 @@
 # [sftobias] Update docker image
 #            Automated process for uploading a docker image
 # ------------------------------------------------------------------
+
 docker kill mail-service
 docker remove mail-service
 docker build -t mail-service_image -f Dockerfile_Service .
