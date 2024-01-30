@@ -66,6 +66,24 @@ Otherwise, if an incorrect token is sent, the following message is returned
 {"status": "error", "message": "Invalid token, notification not sent"}
 ```
 
+## Exim4
+
+Server is configured to send emails via [exim4](https://www.exim.org/). The Docker image already has exim4 installed, but it needs to read the configuration files from the host machine, located in `/etc/exim4`.
+
+For this purpose, it is necessary to mount the host configuration folder on the guest file system.
+
+```bash
+docker run ... -v /etc/exim4:/etc/exim4 ...
+```
+
+**Note:** 
+The docker image already restarts the exim4 service after boot so it can use the new configuration files.
+
+**Important:** 
+If Docker was installed via Snap, it will not copy files from privileged directories when mounting, according to this [issue](https://github.com/moby/moby/issues/34427).
+
+At the moment, it is possible to copy the host configuration files to a non-privileged path.
+
 ## Demo
 
 
