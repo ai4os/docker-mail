@@ -7,6 +7,4 @@ RUN pip install --no-cache-dir -r /tmp/requirements_server.txt
 RUN apt update
 RUN apt -y install exim4-daemon-light
 EXPOSE 8082
-CMD ["uvicorn", "mail_server:app", "--reload", "--host", "0.0.0.0", "--port", "8082"]
-
-
+CMD  service exim4 restart & uvicorn mail_server:app --reload --host 0.0.0.0 --port 8082 
