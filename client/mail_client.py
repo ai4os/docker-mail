@@ -32,14 +32,18 @@ def compare_date(date):
 
 
 def main():
-    date = parser.parse(os.getenv("DATE").strip('"'))
-    mail = os.getenv("DEST")
-    body = os.getenv("BODY").strip('"')
-    subject = os.getenv("SUBJECT").strip('"')
-    token = os.getenv("MAILING_TOKEN")
+    try:
+        date = parser.parse(os.getenv("DATE").strip('"'))
+        mail = os.getenv("DEST")
+        body = os.getenv("BODY").strip('"')
+        subject = os.getenv("SUBJECT").strip('"')
+        token = os.getenv("MAILING_TOKEN")
 
-    if compare_date(date):
-        send_mail(mail, body, subject, token)
+        if compare_date(date):
+            send_mail(mail, body, subject, token)
+
+    except Exception as e:
+        print(f"Error: {e}")
 
 
 main()
