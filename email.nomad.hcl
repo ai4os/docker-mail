@@ -14,10 +14,15 @@ job "demo-email" {
 
     task "usertask" {
 
+      lifecycle {
+        hook = "prestart"
+        sidecar = true
+      }
+
       driver = "docker"
 
       config {
-        image    = "sftobias/mail-sender:latest"
+        image    = "sftobias/mail-client:latest"
         shm_size = 1000000000
       }
 
@@ -27,12 +32,18 @@ job "demo-email" {
         DEST="sftobias@ifca.unican.es"
         BODY="Body of the test mail"
         SUBJECT="Test mail"
+        MAILING_TOKEN="1234"
       }
 
       //TODO check accurate resources
       resources {
         cores  = 1
         memory = 2000
+      }
+
+      restart {
+        attempts = 0
+        mode     = "fail"
       }
 
     }
