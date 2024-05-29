@@ -15,7 +15,7 @@ jobs:
       - name: Login to Harbor
         uses: docker/login-action@v2
         with:
-          registry: ${{ variables.HARBOR_URL  }}
+          registry: ${{ env.HARBOR_URL  }}
           username: ${{ secrets.HARBOR_USERNAME  }}
           password: ${{ secrets.HARBOR_TOKEN }}
 
@@ -27,5 +27,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ variables.HARBOR_URL }}/ai4os/docker-mail:dev
+          tags: ${{ env.HARBOR_URL }}/ai4os/docker-mail:dev
           file: docker/Dockerfile
