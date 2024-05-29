@@ -1,5 +1,8 @@
 name: Build docker-mail:dev docker image
 
+# Note:
+# HARBOR_URL, HARBOR_USERNAME, HARBOR_TOKEN are defined at the organization level
+
 on: workflow_dispatch
 
 jobs:
@@ -16,7 +19,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ${{ env.HARBOR_URL  }}
-          username: ${{ secrets.HARBOR_USERNAME  }}
+          username: ${{ env.HARBOR_USERNAME  }}
           password: ${{ secrets.HARBOR_TOKEN }}
 
       - name: Set up Docker Buildx
