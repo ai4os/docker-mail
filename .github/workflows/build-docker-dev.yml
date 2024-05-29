@@ -8,6 +8,9 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
 
     steps:
       - name: Checkout
@@ -31,4 +34,4 @@ jobs:
           context: .
           push: true
           tags: ${{ vars.HARBOR_URL }}/ai4os/docker-mail:dev
-          file: client/Dockerfile
+          file: ./Dockerfile
