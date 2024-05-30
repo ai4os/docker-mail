@@ -28,9 +28,8 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v5
-        working-directory: ./client
         with:
-          context: .
+          context: ./client
           push: true
           tags: ${{ vars.HARBOR_URL }}/ai4os/docker-mail:client
           file: ./Dockerfile
