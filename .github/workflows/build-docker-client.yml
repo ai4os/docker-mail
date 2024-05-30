@@ -1,4 +1,4 @@
-name: Build docker-mail:client docker image
+name: Build client image
 
 # Note:
 # HARBOR_URL, HARBOR_USERNAME, HARBOR_TOKEN are defined at the organization level

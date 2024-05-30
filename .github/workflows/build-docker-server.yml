@@ -1,4 +1,4 @@
-name: Build docker-mail:server docker image
+name: Build server image
 
 # Note:
 # HARBOR_URL, HARBOR_USERNAME, HARBOR_TOKEN are defined at the organization level
