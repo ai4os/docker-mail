@@ -5,6 +5,9 @@
 # Automated mail
 
 
+[![Build client](https://github.com/ai4os/docker-mail/actions/workflows/build-docker-client.yml/badge.svg)](https://github.com/ai4os/docker-mail/actions/workflows/build-docker-client.yml)
+[![Build server](https://github.com/ai4os/docker-mail/actions/workflows/build-docker-server.yml/badge.svg)](https://github.com/ai4os/docker-mail/actions/workflows/build-docker-server.yml)
+
 This project has been developed based on the need to notify users when their [Nomad jobs](https://github.com/AI4EOSC/ai4-papi/tree/master/etc) are assigned after a delay time (currently set to 7 days). For this and due to specific needs of the mail service used it's necessary to take a client-server approach.
 
 Both Docker images ([Client](https://hub.docker.com/repository/docker/sftobias/mail-client) and [Server](https://hub.docker.com/repository/docker/sftobias/mail-server/general)) are available on Dockerhub.
