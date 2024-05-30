@@ -1,4 +1,4 @@
-name: Build docker-mail:dev docker image (CLIENT)
+name: Build docker-mail:client docker image
 
 # Note:
 # HARBOR_URL, HARBOR_USERNAME, HARBOR_TOKEN are defined at the organization level
@@ -8,11 +8,9 @@ on: workflow_dispatch
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./client
 
-    steps:
+    steps:       
+    
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -33,5 +31,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ vars.HARBOR_URL }}/ai4os/docker-mail:dev
+          tags: ${{ vars.HARBOR_URL }}/ai4os/docker-mail:client
+          working-directory: ./client
           file: ./Dockerfile
