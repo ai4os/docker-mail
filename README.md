@@ -2,18 +2,19 @@
   <img src="https://ai4eosc.eu/wp-content/uploads/sites/10/2022/09/horizontal-transparent.png" alt="logo" width="500"/>
 </div>
 
-# Automated mail
-
+# Automated mail notifications
 
 [![Build client](https://github.com/ai4os/docker-mail/actions/workflows/build-docker-client.yml/badge.svg)](https://github.com/ai4os/docker-mail/actions/workflows/build-docker-client.yml)
 [![Build server](https://github.com/ai4os/docker-mail/actions/workflows/build-docker-server.yml/badge.svg)](https://github.com/ai4os/docker-mail/actions/workflows/build-docker-server.yml)
 
 This project has been developed based on the need to notify users when their [Nomad jobs](https://github.com/AI4EOSC/ai4-papi/tree/master/etc) are assigned after a delay time (currently set to 7 days). For this and due to specific needs of the mail service used it's necessary to take a client-server approach.
 
-Both Docker images ([Client](https://hub.docker.com/repository/docker/sftobias/mail-client) and [Server](https://hub.docker.com/repository/docker/sftobias/mail-server/general)) are available on Dockerhub.
-
-
 The idea is that the client part will be deployed as a side task (`mailtask`) in a Nomad job, taking care of all the temporal logic. If the premise is met then it will make a request to the server, which will be in charge of sending the email.
+
+Both Docker images are available in the project's Harbor registry:
+* `registry.services.ai4os.eu/ai4os/docker-mail:client`
+* `registry.services.ai4os.eu/ai4os/docker-mail:server`
+
 
 ## Usage
 
@@ -79,10 +80,10 @@ For this purpose, it is necessary to mount the host configuration folder on the 
 docker run ... -v /etc/exim4:/etc/exim4 ...
 ```
 
-**Note:** 
+**Note:**
 The docker image already restarts the exim4 service after boot so it can use the new configuration files.
 
-**Important:** 
+**Important:**
 If Docker was installed via Snap, it will not copy files from privileged directories when mounting, according to this [issue](https://github.com/moby/moby/issues/34427).
 
 At the moment, it is possible to copy the host configuration files to a non-privileged path.
@@ -116,5 +117,3 @@ Containers can then be deployed by running `launch_client.sh` and `launch_server
 ```
 
 Depending on the Date variable, the email will be sent or not.
-
-
